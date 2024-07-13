@@ -20,11 +20,8 @@ class DocumentAPI:
         path = f'{self.PATH}/{document_id}'
         return self.client.make_request(HttpMethod.GET, path)
 
-    def edit(self, document_id, title):
+    def edit(self, document_id, body):
         path = f'{self.PATH}/{document_id}'
-        body = {
-            'title': title,
-        }
         return self.client.make_request(HttpMethod.PUT, path, body)
 
     def delete(self, document_id):

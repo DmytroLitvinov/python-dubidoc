@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "dubidoc"
-version = "0.1.0"
+version = "0.1.1"
 requires-python = ">=3.8"
 description = "Python SDK for dubidoc.com.ua API"
 readme = "README.md"
@@ -36,10 +36,7 @@ dependencies = [
 [project.urls]
 Homepage = "https://github.com/DmytroLitvinov/python-dubidoc"
 Issues = "https://github.com/DmytroLitvinov/python-dubidoc/issues"
-Changelog = "https://github.com/DmytroLitvinov/python-dubidoc/CHANGELOG.md"
-
-[tool.setuptools.packages.find]
-include = ["dubidoc*"]
+Changelog = "https://github.com/DmytroLitvinov/python-dubidoc/blob/main/CHANGELOG.md"
 
 # Ruff
 # ----
