@@ -14,6 +14,11 @@ class DocumentAPI:
         return self.client.make_request(HttpMethod.GET, self.PATH)
 
     def create(self, body, organization_id=None):
+        """
+        filename — назва файлу з розширенням (опціонально використовується для додаткової валідації)
+        file — base64
+        title — відображувана назва в кабінеті користувача, емейл листі тощо (рекомендується передавати назву файлу без розширення, хоча це не критично)
+        """
         return self.client.make_request(HttpMethod.POST, self.PATH, body)
 
     def get(self, document_id):
