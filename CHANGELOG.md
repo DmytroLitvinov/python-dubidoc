@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.1.2] - 13-07-2024
+
+Fix `document_link_api` API's method `get_public_link` 🐛
+
 ## [0.1.1] - 13-07-2024
 
 Add wheel distribution to the package 📦
