@@ -15,7 +15,7 @@
 
 Python API wrapper around Dubidoc API. Feel free to contribute and make it better! 🚀
 
-**NOTE**: Since it is rearly release, some of the API endpoints may not be implemented yet. If you need some specific endpoint, feel free to create an issue or pull request.
+**NOTE**: Since it is early release, some of the API endpoints may not be implemented yet. If you need some specific endpoint, feel free to create an issue or pull request.
 Also, library can be changed in the future, so be careful with the updates as for now.
 
 ## Installation
