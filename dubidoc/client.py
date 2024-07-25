@@ -43,17 +43,19 @@ class DubidocAPIClient:
         self.prefix = f'api/api/{self.API_VERSION}/'
         self.endpoint = urljoin(self.base_url, self.prefix)
 
+        self._modules = {}
+
         # Modules
-        self.document_api = DocumentAPI(self)
-        self.document_link_api = DocumentLinkAPI(self)
-        self.participant_api = ParticipantAPI(self)
-        self.download_api = DownloadAPI(self)
+        self.document_api = self._get_module(DocumentAPI)
+        self.document_link_api = self._get_module(DocumentLinkAPI)
+        self.participant_api = self._get_module(ParticipantAPI)
+        self.download_api = self._get_module(DownloadAPI)
 
         if environment == 'stage':
-            self.access_token_api = AccessTokenAPI(self)
-            self.authentication_api = AuthenticationAPI(self)
-            self.device_api = DeviceAPI(self)
-            # Not yet implemented anot probably not needed
+            self.access_token_api = self._get_module(AccessTokenAPI)
+            self.authentication_api = self._get_module(AuthenticationAPI)
+            self.device_api = self._get_module(DeviceAPI(self))
+            # Not yet implemented and probably not needed
             # self.organization_user_api = OrganizationUserAPI(self)
             # self.organization_api = OrganizationAPI(self)
             # self.shortcode_api = ShortcodeAPI(self)
@@ -62,6 +64,11 @@ class DubidocAPIClient:
         headers = self.DEFAULT_HEADERS.copy()
         headers.update({'X-Access-Token': f'{self.api_token}'})
         return headers
+
+    def _get_module(self, cls):
+        if cls not in self._modules:
+            self._modules[cls] = cls(self)
+        return self._modules[cls]
 
     def make_request(self, method: HttpMethod, path: str, body: dict = {}):
         """
