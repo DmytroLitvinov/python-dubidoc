@@ -44,3 +44,12 @@ print(documents)
 ## License
 
 This project is licensed under the terms of the [MIT license](https://github.com/DmytroLitvinov/python-dubidoc/blob/master/LICENSE).
+
+
+### HOW TO MAKE A RELEASE
+
+* Add changes to `CHANGELOG.md`
+* Change version in `dubidoc/__init__.py` and `pyproject.toml`
+* `source .env/bin/activate`
+* `python3 -m build --sdist --wheel`
+* `twine upload dist/*`

@@ -14,7 +14,7 @@ from dubidoc._modules import (
     DownloadAPI,
 )
 from dubidoc.enum import HttpMethod
-
+from dubidoc.response import DubidocAPIResponse
 
 logger = logging.getLogger('dubidoc')
 
@@ -54,7 +54,7 @@ class DubidocAPIClient:
         if environment == 'stage':
             self.access_token_api = self._get_module(AccessTokenAPI)
             self.authentication_api = self._get_module(AuthenticationAPI)
-            self.device_api = self._get_module(DeviceAPI(self))
+            self.device_api = self._get_module(DeviceAPI)
             # Not yet implemented and probably not needed
             # self.organization_user_api = OrganizationUserAPI(self)
             # self.organization_api = OrganizationAPI(self)
@@ -70,7 +70,7 @@ class DubidocAPIClient:
             self._modules[cls] = cls(self)
         return self._modules[cls]
 
-    def make_request(self, method: HttpMethod, path: str, body: dict = {}):
+    def make_request(self, method: HttpMethod, path: str, body: dict = {}) -> DubidocAPIResponse:
         """
         Fetches the given path in the Dubidoc API.
         :param method: HTTP method
@@ -86,4 +86,4 @@ class DubidocAPIClient:
         response = requests.request(method.value, url, headers=headers, json=body, timeout=10)
         logger.debug(f'Received response with status code {response.status_code} and body {response.text}')
 
-        return response.json()
+        return DubidocAPIResponse(response.json(), response.status_code)
