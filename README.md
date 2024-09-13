@@ -38,7 +38,7 @@ api_token = 'xxxxxxxxxxxxxxx'
 dubidoc = DubidocAPIClient(api_token)
 
 documents = dubidoc.document_api.list()
-print(documents)
+print(documents.data, documents.response_code)
 ```
 
 ## License

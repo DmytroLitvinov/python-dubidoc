@@ -2,6 +2,10 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.1.4] - 13-09-2024
+
+Fix init of client for prod/stage environments 🐛
+
 ## [0.1.3] - 13-09-2024
 
 Add `DubidocAPIReponse` class to handle API responses 📦

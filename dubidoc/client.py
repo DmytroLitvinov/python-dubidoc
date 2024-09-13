@@ -32,9 +32,9 @@ class DubidocAPIClient:
         'user-agent': f'python-dubidoc/{__version__} | (https://github.com/DmytroLitvinov/python-dubidoc)',
     }
 
-    def __init__(self, api_token: str, environment: str = 'stage'):
+    def __init__(self, api_token: str, *, is_stage_env: bool = False):
         self.api_token = api_token
-        if environment == 'stage':
+        if is_stage_env:
             self.base_url = 'https://docs-stage.navkolo.one'
         else:
             self.base_url = 'https://my.dubidoc.com.ua'
@@ -51,7 +51,7 @@ class DubidocAPIClient:
         self.participant_api = self._get_module(ParticipantAPI)
         self.download_api = self._get_module(DownloadAPI)
 
-        if environment == 'stage':
+        if is_stage_env == 'stage':
             self.access_token_api = self._get_module(AccessTokenAPI)
             self.authentication_api = self._get_module(AuthenticationAPI)
             self.device_api = self._get_module(DeviceAPI)
