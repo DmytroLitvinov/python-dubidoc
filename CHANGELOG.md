@@ -2,6 +2,14 @@
 All notable changes to this project will be documented in this file.
 
 
+## [0.2.0] - 28-06-2025
+
+Since 1st of July 2025, Dubidoc will have API integration in Premium packages only,
+they also require from that time also use `X-Organization` header for some of APIs.
+
+* Add `organization_api` API to manage organizations ⭐
+* Add `X-Organization` header to all API requests ⭐
+
 ## [0.1.4] - 13-09-2024
 
 Fix init of client for prod/stage environments 🐛

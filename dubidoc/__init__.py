@@ -2,6 +2,6 @@
 
 __author__ = 'Dmytro Litvinov'
 __email__ = 'me@dmytrolitvinov.com'
-__version__ = '0.1.4'
+__version__ = '0.2.0'
 
 from .client import DubidocAPIClient

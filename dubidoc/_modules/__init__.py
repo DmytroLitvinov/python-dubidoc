@@ -4,4 +4,5 @@ from .device import *
 from .document import *
 from .document_link import *
 from .download import *
+from .organization import *
 from .participant import *

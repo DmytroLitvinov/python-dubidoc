@@ -12,6 +12,7 @@ from dubidoc._modules import (
     DocumentLinkAPI,
     ParticipantAPI,
     DownloadAPI,
+    OrganizationAPI,
 )
 from dubidoc.enum import HttpMethod
 from dubidoc.response import DubidocAPIResponse
@@ -32,8 +33,9 @@ class DubidocAPIClient:
         'user-agent': f'python-dubidoc/{__version__} | (https://github.com/DmytroLitvinov/python-dubidoc)',
     }
 
-    def __init__(self, api_token: str, *, is_stage_env: bool = False):
+    def __init__(self, api_token: str, organization_uuid: str = '', *, is_stage_env: bool = False):
         self.api_token = api_token
+        self.organization_uuid = organization_uuid
         if is_stage_env:
             self.base_url = 'https://docs-stage.navkolo.one'
         else:
@@ -50,6 +52,7 @@ class DubidocAPIClient:
         self.document_link_api = self._get_module(DocumentLinkAPI)
         self.participant_api = self._get_module(ParticipantAPI)
         self.download_api = self._get_module(DownloadAPI)
+        self.organization_api = self._get_module(OrganizationAPI)
 
         if is_stage_env == 'stage':
             self.access_token_api = self._get_module(AccessTokenAPI)
@@ -62,7 +65,7 @@ class DubidocAPIClient:
 
     def _get_headers(self):
         headers = self.DEFAULT_HEADERS.copy()
-        headers.update({'X-Access-Token': f'{self.api_token}'})
+        headers.update({'X-Access-Token': f'{self.api_token}', 'X-Organization': self.organization_uuid})
         return headers
 
     def _get_module(self, cls):
