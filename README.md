@@ -53,3 +53,6 @@ This project is licensed under the terms of the [MIT license](https://github.com
 * `source .env/bin/activate`
 * `python3 -m build --sdist --wheel`
 * `twine upload dist/*`
+
+Could be issues with `license-file` and other. Run next command to fix it:
+* `pip install -U twine setuptools packaing`
